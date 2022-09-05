@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: MvTyper;
+    src: url("../fonts/mvtyper.ttf") format("truetype");
+}
+
+
+.thaana{
+    font-family: MvTyper;
+}

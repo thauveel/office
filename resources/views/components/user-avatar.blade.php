@@ -1,0 +1,1 @@
+<img {{ $attributes->merge(['class' => 'rounded-full']) }} src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=06113C&color=fff&bold=true" alt="">

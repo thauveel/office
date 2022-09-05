@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="antialiased font-sans bg-gray-200" data-new-gr-c-s-check-loaded="14.1056.0" data-gr-ext-installed="">
+    <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.outside="open = false"
+        @close.stop="open = false" class="min-h-full">
+
+        <x-hrm.mobile-nav />
+
+
+        <!-- Static sidebar for desktop -->
+        <div
+            class="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:border-r lg:border-gray-200 lg:pt-5 lg:pb-4 lg:bg-gray-100">
+            <div class="flex items-center flex-shrink-0 px-6">
+                <!-- logo -->
+                <svg width="35" height="35" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4v1"></path>
+                    <path d="M18 16h2"></path>
+                    <path d="M14 16h-2v4"></path>
+                    <path d="M12 9v3m0 0h.01M12 12h4.01"></path>
+                    <path d="M16 20h4"></path>
+                    <path d="M4 12h4"></path>
+                    <path d="M20 12h.01"></path>
+                    <path d="M7 8H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1Z"></path>
+                    <path d="M19 8h-2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1Z"></path>
+                    <path d="M7 20H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1Z"></path>
+                </svg>
+
+            </div>
+            <!-- Sidebar component, swap this element with another sidebar if you like -->
+            <x-hrm.nav />
+        </div>
+        <!-- Main column -->
+        <div class="lg:pl-64 flex flex-col">
+            <!-- Search header -->
+            <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden">
+                <button type="button" x-description="Sidebar toggle, controls the 'sidebarOpen' sidebar state."
+                    class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden"
+                    @click="open = true">
+                    <svg class="h-6 w-6" x-description="Heroicon name: outline/menu-alt-1"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16"></path>
+                    </svg>
+                </button>
+                <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
+                    <div class="flex-1 flex">
+
+                    </div>
+                    <div class="flex items-center">
+                        <!-- Profile dropdown -->
+                        <x-user-card-small />
+                    </div>
+                </div>
+            </div>
+            <main class="flex-1 bg-gray-100">
+                <!-- Page title &amp; actions -->
+                {{ $slot }}
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>
