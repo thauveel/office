@@ -18,7 +18,7 @@
                 >
                 @foreach($departments as $department)
                 <option value="{{$department->uuid}}" 
-                {{old('department->id',$job->department_id) == $department->id ? 'selected' : ''}} >
+                @selected(old('department_id', $department->id) == $job->department_id)>
                  {{$department->name}} @ {{$department->worksite->name}}</option>
                 @endforeach
             </select>
