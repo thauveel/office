@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Hrm;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEmployeeRequest extends FormRequest
@@ -13,7 +15,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->can('update department');
     }
 
     /**
@@ -24,7 +26,32 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'staff_id' => ['required','string',Rule::unique('employees', 'staff_id')->ignore($this->employee)],
+            'name' => 'required|string',
+            'name_dv' => 'nullable|string',
+            'gender' => 'required|string|in:male,female',
+            'birth_date' => 'nullable|date', 
+            'nationality' => 'required|string',
+            'nid' => 'required|string',
+            'passport' => 'nullable|string',
+            'joined_date' => 'required|date',
+            'probation_end_date' => 'nullable|date',
+            'term_end_date' => 'nullable|date',
+            'merital_status' => 'nullable|in:unkown,single,married,widowed,separated',
+            'phone' => 'nullable|numeric',
+            'email' => 'nullable|string',
+            'permanent_address' => 'required|string',
+            'permanent_address_dv' => 'nullable|string',
+            'current_address' => 'nullable|string',
+            'current_address_dv' => 'nullable|string',
+            'emegency_contact_name' => 'nullable|string',
+            'emegency_contact' => 'nullable|numeric',
+            'emegency_contact_relation' => 'nullable|string',
+            'is_active' => 'required|boolean',
+            'basic_salary' => 'nullable|numeric',
+            'job_id' => 'required|exists:jobs,uuid',
+            'biometric_device_id' => 'sometimes|string',
+            'user_id' => ['nullable','numeric', 'exists:users,id',Rule::unique('employees', 'user_id')->ignore($this->employee)]
         ];
     }
 }

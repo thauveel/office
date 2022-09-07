@@ -36,10 +36,16 @@ return new class extends Migration
             $table->text('current_address')->nullable();
             $table->text('current_address_dv')->nullable();
 
+            $table->text('emegency_contact_name')->nullable();
+            $table->text('emegency_contact')->nullable();
+            $table->text('emegency_contact_relation')->nullable();
+
             $table->boolean('is_active')->nullable();
+            $table->float('basic_salary', 8, 2)->nullable();
 
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->string('job_id', 36)->nullable();
+            $table->string('job_id', 100)->nullable();
+            $table->string('biometric_device_id');
 
             $table->foreignId('user_id')->nullable();
             $table->timestamps();

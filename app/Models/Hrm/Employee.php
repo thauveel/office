@@ -11,6 +11,8 @@ class Employee extends Model
 {
     use HasFactory, HasUuid;
 
+    protected $dateFormat = 'Y-m-d';
+
     protected $primaryKey = 'uuid';
 
     public $incrementing = false;
@@ -20,20 +22,22 @@ class Employee extends Model
         'nationality', 'nid', 'passport', 'joined_date',
         'probation_end_date', 'term_end_date', 'merital_status',
         'phone', 'email', 'permanent_address', 'permanent_address_dv',
-        'current_address', 'current_address_dv', 'profile_photo_path',
-        'is_active',
+        'current_address', 'current_address_dv', 'emegency_contact_name',
+        'emegency_contact', 'emegency_contact_relation', 'profile_photo_path',
+        'is_active','job_id','basic_salary','biometric_device_id','user_id'
     ];
 
     protected $casts = [
         'id' => 'string',
         'is_active' => 'boolean',
+        'birth_date' => 'date',
         'joined_date' => 'date',
         'probation_end_date' => 'date',
         'term_end_date' => 'date',
     ];
 
     public const NATIONALITIES =[
-        
+        'Maldivian',
         'Afghan',
         'Albanian',
         'Algerian',
@@ -143,7 +147,6 @@ class Employee extends Model
         'Malagasy',
         'Malawian',
         'Malaysian',
-        'Maldivan',
         'Malian',
         'Maltese',
         'Marshallese',

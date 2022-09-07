@@ -11,9 +11,20 @@ use Spatie\QueryBuilder\AllowedFilter;
 use App\Http\Requests\Hrm\StoreEmployeeRequest;
 use App\Http\Requests\Hrm\UpdateEmployeeRequest;
 use App\Models\Hrm\Job;
+use App\Models\User;
 
 class EmployeeController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Employee::class, 'employee');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +40,7 @@ class EmployeeController extends Controller
         ];
 
         $employees = QueryBuilder::for(Employee::class)
-        ->defaultSort('-created_at','staff_id')
+        ->defaultSort('-created_at')
         ->allowedFilters($allowedfilters)
         ->paginate(10)
         ->appends(request()->query());
@@ -45,7 +56,8 @@ class EmployeeController extends Controller
     public function create()
     {
         $jobs = Job::all();
-        return view('hrm.employees.create', compact('jobs'))->withEmployee(new Employee());
+        $admin_users = User::where('is_admin', true)->get();
+        return view('hrm.employees.create', compact('jobs', 'admin_users'))->withEmployee(new Employee());
     }
 
     /**
@@ -56,7 +68,10 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $department = Employee::create($data);
+        return redirect()->route('hrm.employees.index')->withSuccess('Employee created successfully.');
     }
 
     /**
@@ -78,7 +93,10 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        $jobs = Job::all();
+        $admin_users = User::where('is_admin', true)->get();
+        
+        return view('hrm.employees.edit', compact('jobs', 'admin_users', 'employee'));
     }
 
     /**
@@ -90,7 +108,10 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $data = $request->validated();
+
+        $employee->update($data);
+        return redirect()->route('hrm.employees.index')->withSuccess('Employee updated successfully.');
     }
 
     /**
