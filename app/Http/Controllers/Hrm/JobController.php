@@ -59,7 +59,6 @@ class JobController extends Controller
     {
         $job = new Job();
         $departments = Department::with('worksite')->get();
-        //dd($departments);
         return view('hrm.jobs.create', compact('job', 'departments'));
     }
 

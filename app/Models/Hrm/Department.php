@@ -4,6 +4,7 @@ namespace App\Models\Hrm;
 
 use App\Models\Hrm\Job;
 use App\Traits\HasUuid;
+use App\Models\Hrm\WorkSite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,7 +27,7 @@ class Department extends Model
 
     public function worksite()
     {
-        return $this->belongsTo(WorkSite::class,'worksite_id','uuid');
+        return $this->hasOne(WorkSite::class,'uuid','worksite_id');
     }
 
 }

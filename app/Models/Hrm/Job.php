@@ -16,7 +16,7 @@ class Job extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'name', 'department_id'
+        'name', 'department_id', 'code'
     ];
 
     public function department() 
