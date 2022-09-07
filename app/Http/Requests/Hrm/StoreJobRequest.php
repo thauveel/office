@@ -26,6 +26,7 @@ class StoreJobRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'code' => 'required|string',
             'department_id' => 'required|exists:departments,uuid'
         ];
     }

@@ -26,6 +26,7 @@ class UpdateJobRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'code' => 'required|string',
             'department_id' => 'required|exists:departments,uuid'
         ];
     }

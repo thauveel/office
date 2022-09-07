@@ -10,6 +10,13 @@
                 <x-input type="text" name="name"  class="block mt-1 w-full" value="{{old('name',$job->name)}}" />
             </div>
         </div>
+
+        <div>
+            <label class="uppercase text-xs text-gray-600 font-medium">Code</label>
+            <div>
+                <x-input type="text" name="code"  class="block mt-1 w-full" value="{{old('code',$job->code)}}" />
+            </div>
+        </div>
         
         <div>
             <label class="uppercase text-xs text-gray-600 font-medium">Department</label>
