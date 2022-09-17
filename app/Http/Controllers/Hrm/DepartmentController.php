@@ -8,7 +8,6 @@ use App\Concerns\FilterMultiFields;
 use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Hrm\StoreDepartmentRequest;
 use App\Http\Requests\Hrm\UpdateDepartmentRequest;
 use App\Models\Hrm\WorkSite;

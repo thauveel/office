@@ -24,7 +24,7 @@
                 class="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
                 >
                 @foreach($departments as $department)
-                <option value="{{$department->uuid}}" 
+                <option value="{{$department->id}}" 
                 @selected(old('department_id', $department->id) == $job->department_id)>
                  {{$department->name}} @ {{$department->worksite->name}}</option>
                 @endforeach

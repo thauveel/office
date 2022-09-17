@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->uuid('id')->primary();
             $table->string('name')->unique();
             $table->string('alias');
             $table->string('email');

@@ -56,6 +56,7 @@
                         <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{$worksite->head ? $worksite->head->name : 'Not Assigned'}}</td>
                         <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex justify-between justify-items-center">
                             <a href="{{route('hrm.worksites.edit', compact('worksite')) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href="{{route('hrm.worksites.shifts.index', compact('worksite')) }}" class="text-indigo-600 hover:text-indigo-900">Shifts</a>
                             <form name="worksite-{{$worksite->id}}"
                                 action="{{route('hrm.worksites.destroy',compact('worksite'))}}" method="POST">
                                 @csrf

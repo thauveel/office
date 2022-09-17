@@ -16,7 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    @include('sweetalert::alert')
+    @livewireStyles
 </head>
 
 <body class="antialiased font-sans bg-gray-50" data-new-gr-c-s-check-loaded="14.1056.0" data-gr-ext-installed="">
@@ -168,7 +168,7 @@
         </div>
 
     </div>
-
+    @livewireScripts
 </body>
 
 </html>

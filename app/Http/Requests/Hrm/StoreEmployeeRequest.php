@@ -51,7 +51,7 @@ class StoreEmployeeRequest extends FormRequest
             'basic_salary' => 'nullable|numeric',
             'job_id' => 'required|exists:jobs,uuid',
             'biometric_device_id' => 'sometimes|string',
-            'user_id' => 'nullable|numeric|exists:users|unique:employees',
+            'user_id' => 'nullable|numeric|exists:users,id|unique:employees',
             
         ];
     }

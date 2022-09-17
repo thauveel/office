@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Hrm;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class WorkSiteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'code' => 'UC',
+            'name' =>'Ungoofaaru Council',
+            'created_at' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s')
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->uuid('id')->primary();
             $table->string('staff_id')->unique();
             $table->string('name');
             $table->string('name_dv')->nullable();
@@ -46,6 +46,8 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('job_id', 100)->nullable();
             $table->string('biometric_device_id');
+
+            $table->enum('shift_type', ['wrok_site','manual'])->nullable();
 
             $table->foreignId('user_id')->nullable();
             $table->timestamps();

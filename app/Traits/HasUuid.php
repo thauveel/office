@@ -11,7 +11,7 @@ trait HasUuid
         static::creating(function ($model)
         {
             
-            $model->uuid = Str::uuid()->toString();
+            $model->id = Str::uuid()->toString();
         });
     }
 }

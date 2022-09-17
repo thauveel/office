@@ -19,11 +19,13 @@
             <div class="px-2 space-y-1">
                 <x-hrm.nav-link :href="route('hrm.dashboard')" :active="request()->routeIs('hrm.dashboard')">
                     <svg class="mr-4 flex-shrink-0 h-6 w-6" x-description="Heroicon name: outline/home"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         aria-hidden="true">
-                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-                        <path d="M3 9h18"></path>
-                        <path d="M9 21V9"></path>
+                        <path d="M3 3h7v7H3z"></path>
+                        <path d="M14 3h7v7h-7z"></path>
+                        <path d="M14 14h7v7h-7z"></path>
+                        <path d="M3 14h7v7H3z"></path>
                     </svg>
                     Dashboard
                 </x-hrm.nav-link>
@@ -47,12 +49,7 @@
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         aria-hidden="true">
-                        <path d="M8 6h13"></path>
-                        <path d="M8 12h13"></path>
-                        <path d="M8 18h13"></path>
-                        <path d="M3 6h.01"></path>
-                        <path d="M3 12h.01"></path>
-                        <path d="M3 18h.01"></path>
+                        <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
                     </svg>
                     Deparments
                 </x-hrm.nav-link>
@@ -64,12 +61,8 @@
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         aria-hidden="true">
-                        <path d="M8 6h13"></path>
-                        <path d="M8 12h13"></path>
-                        <path d="M8 18h13"></path>
-                        <path d="M3 6h.01"></path>
-                        <path d="M3 12h.01"></path>
-                        <path d="M3 18h.01"></path>
+                        <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                     </svg>
                     Jobs
                 </x-hrm.nav-link>
@@ -90,20 +83,7 @@
                 </x-hrm.nav-link>
                 @endcan
 
-                @can('read schedule')
-                <x-hrm.nav-link :href="route('hrm.schedules.index')" :active="request()->routeIs('hrm.schedules.*')">
-                    <svg class="mr-4 flex-shrink-0 h-6 w-6" x-description="Heroicon name: outline/home"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        aria-hidden="true">
-                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
-                        <path d="M16 2v4"></path>
-                        <path d="M8 2v4"></path>
-                        <path d="M3 10h18"></path>
-                    </svg>
-                    Schedules
-                </x-hrm.nav-link>
-                @endcan
+                
 
             </div>
 

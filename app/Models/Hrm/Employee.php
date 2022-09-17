@@ -2,21 +2,14 @@
 
 namespace App\Models\Hrm;
 
+use App\Models\BaseModel;
+use App\Models\User;
 use App\Models\Hrm\Job;
-use App\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Employee extends Model
+class Employee extends BaseModel
 {
-    use HasFactory, HasUuid;
-
     protected $dateFormat = 'Y-m-d';
 
-    protected $primaryKey = 'uuid';
-
-    public $incrementing = false;
-    
     protected $fillable = [
         'staff_id', 'name','name_dv', 'gender', 'birth_date',
         'nationality', 'nid', 'passport', 'joined_date',
@@ -234,6 +227,16 @@ class Employee extends Model
 
     public function job() 
     {
-        return $this->belongsTo(Job::class,'job_id','uuid');
+        return $this->belongsTo(Job::class);
     }
+
+    public function user() 
+    {
+        return $this->hasOne(User::class);
+    }
+
+    // public function department()
+    // {
+    //     return $this->
+    // }
 }

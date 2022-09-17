@@ -14,6 +14,11 @@ class JobSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // $persons = Person::inRandomOrder()->limit(50)->get();
+        // $persons->each( function ($person) {
+        //     $resident = Resident::factory()->make();
+        //     $resident->person_id = $person->id;
+        //     $resident->save();
+        // });
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories\Hrm;
 
+use App\Models\Hrm\WorkSite;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +20,10 @@ class DepartmentFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'alias' => $this->faker->randomElement(['AI', 'FV','SD','WT']),
-            'email' => $this->fakeer->safeEmail()
+            'alias' => $this->faker->unique()->randomElement(['AI', 'FV','SD','WT']),
+            'email' => $this->faker->safeEmail(),
+            'worksite_id' => WorkSite::all()->random()->id,
+            'created_at' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s')
         ];
     }
 }

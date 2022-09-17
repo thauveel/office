@@ -8,10 +8,11 @@ use App\Http\Controllers\PortalController;
 
 //hrm controllers
 use App\Http\Controllers\Hrm\JobController;
-use App\Http\Controllers\Hrm\ScheduleController;
+use App\Http\Controllers\Hrm\ShiftController;
 use App\Http\Controllers\Hrm\EmployeeController;
 use App\Http\Controllers\Hrm\WorkSiteController;
 use App\Http\Controllers\Hrm\DepartmentController;
+use App\Http\Controllers\Hrm\WorkSiteShiftController;
 
 Route::group(['middleware' => 'auth'], function() {
 
@@ -40,9 +41,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::resource('departments', DepartmentController::class);
         Route::resource('jobs', JobController::class);
         Route::resource('worksites', WorkSiteController::class);
+        Route::resource('worksites.shifts', WorkSiteShiftController::class);
         Route::resource('employees', EmployeeController::class);
-        Route::resource('employees.schedules', ScheduleController::class);
-        Route::resource('schedules', ScheduleController::class);
+        Route::resource('employees.shifts', ShiftController::class);
+        
     });
 });
 

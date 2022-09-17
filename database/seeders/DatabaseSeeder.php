@@ -3,8 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Hrm\Department;
+use App\Models\Hrm\Employee;
+use App\Models\Hrm\Job;
+use App\Models\Hrm\WorkSite;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,9 +23,15 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->count(1)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $superadmin = Role::create(['name' => 'Super-Admin']);
+        
+        $user = User::find(1);
+        $user->assignRole('Super-Admin');
+
+        WorkSite::factory()->count(1)->create();
+        Department::factory()->count(2)->create();
+        Job::factory()->count(4)->create();
+        Employee::factory()->count(10)->create();
+
     }
 }

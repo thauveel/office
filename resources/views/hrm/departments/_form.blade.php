@@ -1,7 +1,7 @@
 <form method="post"
-    action="{{ $department->uuid ? route('hrm.departments.update', $department) : route('hrm.departments.store')}}" enctype="multipart/form-data">
+    action="{{ $department->id ? route('hrm.departments.update', $department) : route('hrm.departments.store')}}" enctype="multipart/form-data">
     @csrf
-    @method($department->uuid? 'PATCH' : '')
+    @method($department->id? 'PATCH' : '')
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div>

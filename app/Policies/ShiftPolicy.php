@@ -3,11 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Hrm\Department;
-use Illuminate\Auth\Access\Response;
+use App\Models\hrm\Shift;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DepartmentPolicy
+class ShiftPolicy
 {
     use HandlesAuthorization;
 
@@ -19,23 +18,19 @@ class DepartmentPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('read department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
+     * @param  \App\Models\hrm\Shift  $shift
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user)
+    public function view(User $user, Shift $shift)
     {
-        return $user->can('read department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 
     /**
@@ -46,64 +41,54 @@ class DepartmentPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
+     * @param  \App\Models\hrm\Shift  $shift
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
+    public function update(User $user, Shift $shift)
     {
-        return $user->can('update department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
+     * @param  \App\Models\hrm\Shift  $shift
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user)
+    public function delete(User $user, Shift $shift)
     {
-        return $user->can('delete department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
+     * @param  \App\Models\hrm\Shift  $shift
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user)
+    public function restore(User $user, Shift $shift)
     {
-        return $user->can('update department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
+     * @param  \App\Models\hrm\Shift  $shift
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user)
+    public function forceDelete(User $user, Shift $shift)
     {
-        return $user->can('delete department')
-        ? Response::allow()
-        : Response::deny('You do not have permission.');
+        //
     }
 }

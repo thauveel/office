@@ -2,6 +2,8 @@
 
 namespace Database\Factories\Hrm;
 
+use Illuminate\Support\Str;
+use App\Models\Hrm\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'code' => $this->faker->unique()->randomElement(['1101', '1102','1103','1104']),
+            'department_id' => Department::all()->random()->id,
+            'created_at' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s')
         ];
     }
 }

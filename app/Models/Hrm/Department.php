@@ -2,19 +2,12 @@
 
 namespace App\Models\Hrm;
 
+use App\Models\BaseModel;
 use App\Models\Hrm\Job;
-use App\Traits\HasUuid;
 use App\Models\Hrm\WorkSite;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Department extends Model
+class Department extends BaseModel
 {
-    use HasFactory, HasUuid;
-
-    protected $primaryKey = 'uuid';
-
-    public $incrementing = false;
 
     protected $fillable = [
         'name', 'alias','email', 'worksite_id'
@@ -27,7 +20,7 @@ class Department extends Model
 
     public function worksite()
     {
-        return $this->hasOne(WorkSite::class,'uuid','worksite_id');
+        return $this->belongsTo(WorkSite::class);
     }
 
 }
