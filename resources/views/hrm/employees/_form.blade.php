@@ -1,7 +1,7 @@
 <form method="post"
-    action="{{ $employee->uuid ? route('hrm.employees.update', $employee) : route('hrm.employees.store')}}" enctype="multipart/form-data">
+    action="{{ $employee->id ? route('hrm.employees.update', $employee) : route('hrm.employees.store')}}" enctype="multipart/form-data">
     @csrf
-    @method($employee->uuid? 'PATCH' : '')
+    @method($employee->id? 'PATCH' : '')
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div>
@@ -194,8 +194,8 @@
                 class="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
                 >
                 @foreach($jobs as $job)
-                <option value="{{$job->uuid}}" 
-                @selected(old('job_id', $employee->job_id) == $job->uuid)>
+                <option value="{{$job->id}}" 
+                @selected(old('job_id', $employee->job_id) == $job->id)>
                 {{$job->name}} ({{$job->code}}) in {{$job->department->alias}} in {{$job->department->worksite->code}}
                 </option>
                 @endforeach

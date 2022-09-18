@@ -1,7 +1,7 @@
 <form method="post"
-    action="{{ $job->uuid ? route('hrm.jobs.update', $job) : route('hrm.jobs.store')}}" enctype="multipart/form-data">
+    action="{{ $job->id ? route('hrm.jobs.update', $job) : route('hrm.jobs.store')}}" enctype="multipart/form-data">
     @csrf
-    @method($job->uuid? 'PATCH' : '')
+    @method($job->id? 'PATCH' : '')
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div>

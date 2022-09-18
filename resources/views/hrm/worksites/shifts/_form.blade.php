@@ -1,7 +1,7 @@
 <form method="post"
-    action="{{ $shift->uuid ? route('hrm.worksites.shifts.update', compact('worksite', 'shift')) : route('hrm.worksites.shifts.store', compact('worksite'))}}" enctype="multipart/form-data">
+    action="{{ $shift->id ? route('hrm.worksites.shifts.update', compact('worksite', 'shift')) : route('hrm.worksites.shifts.store', compact('worksite'))}}" enctype="multipart/form-data">
     @csrf
-    @method($shift->uuid? 'PATCH' : '')
+    @method($shift->id? 'PATCH' : '')
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
 

@@ -1,7 +1,7 @@
 <form method="post"
-    action="{{ $shift->uuid ? route('hrm.shifts.update', $shift) : route('hrm.shifts.store')}}" enctype="multipart/form-data">
+    action="{{ $shift->id ? route('hrm.shifts.update', $shift) : route('hrm.shifts.store')}}" enctype="multipart/form-data">
     @csrf
-    @method($shift->uuid? 'PATCH' : '')
+    @method($shift->id? 'PATCH' : '')
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div>
@@ -22,7 +22,7 @@
                 </select>
             </div>
         </div>
-        @if($shift->uuid)
+        @if($shift->id)
         <div>
             <label class="uppercase text-xs text-gray-600 font-medium">Status</label>
             <div>

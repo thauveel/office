@@ -19,7 +19,7 @@ class WorkSiteShiftController extends Controller
      */
     public function index(WorkSite $worksite, Request $request)
     {
-        $shifts = QueryBuilder::for(Shift::where('wrok_site_id',$worksite->uuid))
+        $shifts = QueryBuilder::for(Shift::where('wrok_site_id',$worksite->id))
         ->defaultSort('created_at')
         ->select('shifts.*')
         ->paginate(10)
