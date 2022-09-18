@@ -13,6 +13,11 @@ class Job extends BaseModel
 
     public function department() 
     {
-        return $this->belongsTo(Department::class,'id','department_id');
+        return $this->belongsTo(Department::class);
+    }
+
+    public function worksite() 
+    {
+        return $this->hasOneThrough(Department::class, WorkSite::class);
     }
 }

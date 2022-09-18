@@ -10,7 +10,7 @@ class Department extends BaseModel
 {
 
     protected $fillable = [
-        'name', 'alias','email', 'worksite_id'
+        'name', 'alias','email', 'work_site_id'
     ];
 
     public function job()

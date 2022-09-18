@@ -29,7 +29,7 @@ class UpdateDepartmentRequest extends FormRequest
             'name' => ['required','string',Rule::unique('departments', 'name')->ignore($this->department)],
             'alias' => ['required','string',Rule::unique('departments', 'alias')->ignore($this->department)],
             'email' => ['required','string',Rule::unique('departments', 'email')->ignore($this->department)], 
-            'worksite_id' => 'sometimes|string'
+            'work_site_id' => 'sometimes|string'
         ];
     }
 }

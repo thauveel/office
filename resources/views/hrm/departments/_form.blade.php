@@ -27,12 +27,12 @@
 
         <div>
             <label class="uppercase text-xs text-gray-600 font-medium">Work Site</label>
-            <select name="worksite_id"
+            <select name="work_site_id"
                 class="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
                 >
                 @foreach($worksites as $worksite)
                 <option value="{{$worksite->id}}" 
-                @selected(old('worksite_id', $department->worksite_id) == $worksite->id)> 
+                @selected(old('work_site_id', $department->work_site_id) == $worksite->id)> 
                 {{$worksite->name}}
                 </option>
                 @endforeach

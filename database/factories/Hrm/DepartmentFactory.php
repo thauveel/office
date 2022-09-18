@@ -22,7 +22,7 @@ class DepartmentFactory extends Factory
             'name' => $this->faker->name(),
             'alias' => $this->faker->unique()->randomElement(['AI', 'FV','SD','WT']),
             'email' => $this->faker->safeEmail(),
-            'worksite_id' => WorkSite::all()->random()->id,
+            'work_site_id' => WorkSite::all()->random()->id,
             'created_at' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s')
         ];
     }

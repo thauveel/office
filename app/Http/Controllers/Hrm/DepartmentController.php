@@ -39,7 +39,7 @@ class DepartmentController extends Controller
         ];
 
         $departments = QueryBuilder::for(Department::class)
-        ->defaultSort('-created_at','worksite_id')
+        ->defaultSort('-created_at','work_site_id')
         ->allowedFilters($allowedfilters)
         ->paginate(10)
         ->appends(request()->query());

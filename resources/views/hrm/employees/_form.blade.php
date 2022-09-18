@@ -51,7 +51,7 @@
                     class="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
                     value="maldivian">
                     @foreach(App\Models\Hrm\Employee::NATIONALITIES as $nationality)
-                    <option value="{{$nationality}}" @selected(old('worksite_id', $employee->nationality) == $nationality) > {{$nationality}}</option>
+                    <option value="{{$nationality}}" @selected(old('nationality', $employee->nationality) == $nationality) > {{$nationality}}</option>
                     @endforeach
                 </select>
             </div>

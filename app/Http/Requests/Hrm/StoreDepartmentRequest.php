@@ -28,7 +28,7 @@ class StoreDepartmentRequest extends FormRequest
             'name' => 'required|string|unique:departments',
             'alias' => 'required|string|unique:departments',
             'email' => 'required|string|unique:departments', 
-            'worksite_id' => 'sometimes|string'
+            'work_site_id' => 'sometimes|string'
         ];
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('alias');
             $table->string('email');
-            $table->foreignUuid('worksite_id');
+            $table->foreignUuid('work_site_id');
             $table->timestamps();
         });
     }
