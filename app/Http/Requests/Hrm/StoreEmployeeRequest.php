@@ -49,7 +49,7 @@ class StoreEmployeeRequest extends FormRequest
             'emegency_contact_relation' => 'nullable|string',
             'is_active' => 'required|boolean',
             'basic_salary' => 'nullable|numeric',
-            'job_id' => 'required|exists:jobs,uuid',
+            'job_id' => 'required|exists:jobs,id',
             'biometric_device_id' => 'sometimes|string',
             'user_id' => 'nullable|numeric|exists:users,id|unique:employees',
             

@@ -18,7 +18,7 @@ class Department extends BaseModel
         return $this->hasMany(Job::class);
     }
 
-    public function worksite()
+    public function workSite()
     {
         return $this->belongsTo(WorkSite::class);
     }

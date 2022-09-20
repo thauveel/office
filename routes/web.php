@@ -41,9 +41,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::resource('departments', DepartmentController::class);
         Route::resource('jobs', JobController::class);
         Route::resource('worksites', WorkSiteController::class);
-        Route::resource('worksites.shifts', WorkSiteShiftController::class);
+        Route::resource('worksites.shifts', ShiftController::class);
         Route::resource('employees', EmployeeController::class);
-        Route::resource('employees.shifts', ShiftController::class);
         
     });
 });

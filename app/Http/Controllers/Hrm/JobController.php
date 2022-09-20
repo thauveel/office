@@ -38,7 +38,8 @@ class JobController extends Controller
             AllowedFilter::custom('query', new FilterMultiFields($fields))
         ];
 
-        $jobs = QueryBuilder::for(Job::with('department','worksite'))
+        $jobs = QueryBuilder::for(Job::class)
+        ->join('departments','departments.id','jobs.department_id')
         ->defaultSort('-created_at')
         ->allowedFilters($allowedfilters)
         ->select('jobs.*')

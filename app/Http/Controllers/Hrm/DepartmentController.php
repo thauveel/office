@@ -38,7 +38,7 @@ class DepartmentController extends Controller
             AllowedFilter::custom('query', new FilterMultiFields($fields))
         ];
 
-        $departments = QueryBuilder::for(Department::class)
+        $departments = QueryBuilder::for(Department::with('worksite'))
         ->defaultSort('-created_at','work_site_id')
         ->allowedFilters($allowedfilters)
         ->paginate(10)

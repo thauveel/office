@@ -3,6 +3,7 @@
 namespace App\Models\Hrm;
 
 use App\Models\BaseModel;
+use App\Models\hrm\Shift;
 use App\Models\Hrm\Department;
 
 class Job extends BaseModel
@@ -16,8 +17,16 @@ class Job extends BaseModel
         return $this->belongsTo(Department::class);
     }
 
-    public function worksite() 
+    public function shifts()
     {
-        return $this->hasOneThrough(Department::class, WorkSite::class);
+        return $this->hasMany(Shift::class);
     }
+
+    // public function worksite() 
+    // {
+    //     return $this->hasOneThrough(
+    //         WorkSite::class, 
+    //         Department::class
+    //     );
+    // }
 }

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Hrm;
 
+use Carbon\Carbon;
 use App\Models\hrm\Shift;
 use App\Models\Hrm\WorkSite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use App\Http\Requests\Hrm\StoreShiftRequest;
+use App\Http\Requests\Hrm\UpdateShiftRequest;
 
 class WorkSiteShiftController extends Controller
 {
@@ -19,8 +22,8 @@ class WorkSiteShiftController extends Controller
      */
     public function index(WorkSite $worksite, Request $request)
     {
-        $shifts = QueryBuilder::for(Shift::where('wrok_site_id',$worksite->id))
-        ->defaultSort('created_at')
+        $shifts = QueryBuilder::for(Shift::where('work_site_id',$worksite->id))
+        ->defaultSort('-created_at')
         ->select('shifts.*')
         ->paginate(10)
         ->appends(request()->query());;
@@ -48,7 +51,11 @@ class WorkSiteShiftController extends Controller
      */
     public function store(WorkSite $worksite, StoreShiftRequest $request)
     {
-        //
+        $data = $request->validated();
+        
+
+        $department = $worksite->shifts()->create($data);
+        return redirect()->route('hrm.worksites.shifts.index', compact('worksite'))->withSuccess('Shift created successfully.');
     }
 
     /**
@@ -70,7 +77,7 @@ class WorkSiteShiftController extends Controller
      */
     public function edit(WorkSite $worksite, Shift $shift)
     {
-        //
+        return view('hrm.worksites.shifts.edit',compact('worksite','shift'));
     }
 
     /**
@@ -80,9 +87,12 @@ class WorkSiteShiftController extends Controller
      * @param  \App\Models\hrm\Shift  $shift
      * @return \Illuminate\Http\Response
      */
-    public function update(WorkSite $worksite, UpdateShiftRequest $request, Shift $shift)
+    public function update(WorkSite $worksite, Shift $shift, UpdateShiftRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $shift->update($data);
+        return redirect()->route('hrm.worksites.shifts.index', compact('worksite','shift'))->withSuccess('Shift updated successfully.');
     }
 
     /**
@@ -93,6 +103,8 @@ class WorkSiteShiftController extends Controller
      */
     public function destroy(WorkSite $worksite, Shift $shift)
     {
-        //
+        $shift->delete();
+
+        return redirect()->route('hrm.worksites.shifts.index', compact('worksite'))->withSuccess('Shift deleted successfully.');
     }
 }

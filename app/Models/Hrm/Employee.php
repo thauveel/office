@@ -2,9 +2,10 @@
 
 namespace App\Models\Hrm;
 
-use App\Models\BaseModel;
 use App\Models\User;
 use App\Models\Hrm\Job;
+use App\Models\BaseModel;
+use App\Models\hrm\Shift;
 
 class Employee extends BaseModel
 {
@@ -233,6 +234,11 @@ class Employee extends BaseModel
     public function user() 
     {
         return $this->hasOne(User::class);
+    }
+
+    public function shifts()
+    {
+        return $this->hasMany(Shift::class);
     }
 
     // public function department()
