@@ -27,10 +27,6 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col"
-                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                            Day
-                        </th>
-                        <th scope="col"
                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Check In
                         </th>
@@ -62,15 +58,24 @@
                 <tbody class="divide-y divide-gray-200 bg-white">
                     @foreach ($shifts as $shift)
                     <tr>
-                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-900 sm:pl-6">{{$shift->day_of_week}}</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->check_in_end}}</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->checkout_start}}</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->shift_total}}</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_start}}</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_end}}</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_allowed_duration}}</td>
-                        <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-900 sm:pl-6">{{$shift->check_in_end->format('H:i')}}</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->check_out_start->format('H:i')}}</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->shift_total->format('H:i')}}</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_start->format('H:i')}}</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_end->format('H:i')}}</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_allowed_duration->format('H:i')}}</td>
+                        <td class="flex justify-between relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                            <a href="{{route('hrm.worksites.shifts.edit', compact('worksite','shift')) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <form name="worksite-{{$worksite->id}}"
+                                action="{{route('hrm.worksites.shifts.destroy',compact('worksite','shift'))}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button 
+                                onclick="return confirm('Are you sure?')"
+                                    class="text-red-600 hover:text-red-900">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

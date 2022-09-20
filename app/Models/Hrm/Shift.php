@@ -2,21 +2,14 @@
 
 namespace App\Models\hrm;
 
+use Carbon\Carbon;
+use App\Models\Hrm\Job;
+use App\Models\BaseModel;
+use App\Models\Hrm\WorkSite;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Shift extends Model
+class Shift extends BaseModel
 {
-
-    public const STATUS = [
-        'scheduled' => 'scheduled',
-        'present' => 'present',
-        'completed' => 'completed',
-        'absent' => 'absent',
-        'released' => 'released',
-        'on_trip' => 'on_trip'
-    ];
-
     public const DAYS = [
         'sunday' => 'sunday',
         'monday' => 'monday',
@@ -25,25 +18,52 @@ class Shift extends Model
         'thursday' => 'thursday',
         'friday' => 'friday',
         'saturday' => 'saturday'
-
     ];
 
-    protected $dateFormat = 'Y-m-d';
-
-    protected $primaryKey = 'uuid';
-
-    public $incrementing = false;
+    // protected $dateFormat = 'H:i';
 
     protected $fillable = [
-        'date', 'type','status', 'leave_id', 'check_in_start',
-        'check_in_end', 'checked_in_at', 'break_start',
-        'break_end', 'break_allowed_duration', 'checkout_start',
-        'checkout_end', 'checked_out_at', 'shift_total', 'total_worked',
-        'total_late', 'work_day_count', 'employee_id'
+        'day_of_week', 'color', 'check_in_start','check_in_end',
+        'break_start', 'break_end', 'break_allowed_duration',
+        'check_out_start','check_out_end', 'shift_total', 
+        'work_site_id', 'job_id', 'employee_id'
     ];
+
+    protected $casts = [
+        'check_in_start' => 'datetime:H:i',
+        'check_in_end' => 'datetime:H:i',
+        'break_start' => 'datetime:H:i',
+        'break_end' => 'datetime:H:i',
+        'break_allowed_duration' => 'datetime:H:i',
+        'check_out_start' => 'datetime:H:i',
+        'check_out_end' => 'datetime:H:i',
+        'shift_total' => 'datetime:H:i',
+    ];
+
+   /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::saving(function ($shift) {
+            $shift->shift_total = Carbon::parse($shift->check_out_start)->diff(Carbon::parse($shift->check_in_end))->format('%H:%I');
+        });
+    }
 
     public function employee() 
     {
         return $this->belongsTo(Employee::class,'employee_id','uuid');
+    }
+
+    public function job() 
+    {
+        return $this->belongsTo(Job::class,'employee_id','uuid');
+    }
+
+    public function workSite() 
+    {
+        return $this->belongsTo(WorkSite::class,'employee_id','uuid');
     }
 }

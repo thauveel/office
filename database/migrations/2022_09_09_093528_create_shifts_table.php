@@ -15,22 +15,18 @@ return new class extends Migration
     {
         Schema::create('shifts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->date('date')->nullable();
-            $table->enum('day_of_week', ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'])->nullable();
-            $table->string('type'); // fixed, flexible
+            $table->string('color')->nullable()->default('#34ebab');
             $table->time('check_in_start')->nullable();
             $table->time('check_in_end');
             $table->time('break_start')->nullable();
             $table->time('break_end')->nullable();
             $table->time('break_allowed_duration')->nullable();
-            $table->time('checkout_start');
-            $table->time('checkout_end')->nullable();
+            $table->time('check_out_start');
+            $table->time('check_out_end')->nullable();
             $table->time('shift_total')->nullable();
-            $table->float('work_day_count',3,2);
-            $table->foreignUuid('wrok_site_id')->nullable();
+            $table->foreignUuid('work_site_id')->nullable();
+            $table->foreignUuid('job_id')->nullable();
             $table->foreignUuid('employee_id')->nullable();
-            
-
             $table->timestamps();
         });
     }

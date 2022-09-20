@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\hrm\Shift;
+use Illuminate\Http\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ShiftPolicy
@@ -18,7 +19,9 @@ class ShiftPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('read shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -30,7 +33,9 @@ class ShiftPolicy
      */
     public function view(User $user, Shift $shift)
     {
-        //
+        return $user->can('read shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -41,7 +46,9 @@ class ShiftPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -53,7 +60,9 @@ class ShiftPolicy
      */
     public function update(User $user, Shift $shift)
     {
-        //
+        return $user->can('update shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -65,7 +74,9 @@ class ShiftPolicy
      */
     public function delete(User $user, Shift $shift)
     {
-        //
+        return $user->can('delete shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -77,7 +88,9 @@ class ShiftPolicy
      */
     public function restore(User $user, Shift $shift)
     {
-        //
+        return $user->can('update shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -89,6 +102,8 @@ class ShiftPolicy
      */
     public function forceDelete(User $user, Shift $shift)
     {
-        //
+        return $user->can('delete shift')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 }
