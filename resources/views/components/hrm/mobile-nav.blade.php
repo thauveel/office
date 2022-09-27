@@ -111,6 +111,18 @@
                 </x-hrm.nav-link>
                 @endcan
 
+                @can('read attendance')
+                <x-hrm.nav-link :href="route('hrm.attendances.index')" :active="request()->routeIs('hrm.attendances.*')">
+                    <svg class="mr-4 flex-shrink-0 h-6 w-6" x-description="Heroicon name: outline/home"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        aria-hidden="true">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <path d="M8.5 3a4 4 0 1 0 0 8 4 4 0 1 0 0-8z"></path>
+                        <path d="m17 11 2 2 4-4"></path>
+                    </svg>
+                    Attendances
+                </x-hrm.nav-link>
+                @endcan
                 
             </div>
 

@@ -66,6 +66,7 @@
                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$shift->break_allowed_duration->format('H:i')}}</td>
                         <td class="flex justify-between relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                             <a href="{{route('hrm.worksites.shifts.edit', compact('worksite','shift')) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href="{{route('hrm.worksites.shifts.assign', compact('worksite','shift')) }}" class="text-indigo-600 hover:text-indigo-900">Assign</a>
                             <form name="worksite-{{$worksite->id}}"
                                 action="{{route('hrm.worksites.shifts.destroy',compact('worksite','shift'))}}" method="POST">
                                 @csrf

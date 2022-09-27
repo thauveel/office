@@ -38,14 +38,12 @@ class WorkSiteController extends Controller
             AllowedFilter::custom('query', new FilterMultiFields($fields))
         ];
 
-        $worksites = QueryBuilder::for(WorkSite::class)
+        $worksites = QueryBuilder::for(WorkSite::with('departments'))
         ->defaultSort('-created_at')
         ->allowedFilters($allowedfilters)
         ->paginate(10)
         ->appends(request()->query());
         $request->flash();
-
-        //dd($worksites);
         
         return view('hrm.worksites.index', compact('worksites'));
     }

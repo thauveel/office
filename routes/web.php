@@ -4,13 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\HrmController;
-use App\Http\Controllers\PortalController;
+
 
 //hrm controllers
+use App\Http\Controllers\PortalController;
 use App\Http\Controllers\Hrm\JobController;
+use App\Http\Controllers\Hrm\DutyController;
 use App\Http\Controllers\Hrm\ShiftController;
 use App\Http\Controllers\Hrm\EmployeeController;
 use App\Http\Controllers\Hrm\WorkSiteController;
+use App\Http\Controllers\Hrm\AttendanceController;
 use App\Http\Controllers\Hrm\DepartmentController;
 use App\Http\Controllers\Hrm\WorkSiteShiftController;
 
@@ -42,8 +45,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::resource('jobs', JobController::class);
         Route::resource('worksites', WorkSiteController::class);
         Route::resource('worksites.shifts', ShiftController::class);
+        Route::get('/worksites/{worksite}/shifts/{shift}/assign', 
+            [ShiftController::class, 'assign'])->name('worksites.shifts.assign');
+        Route::post('/worksites/{worksite}/shifts/{shift}/assignto', 
+            [ShiftController::class, 'assignto'])->name('worksites.shifts.assignto');
+        Route::resource('worksites.duties', DutyController::class);
         Route::resource('employees', EmployeeController::class);
-        
+        Route::resource('employees', EmployeeController::class);
+        Route::resource('attendances', AttendanceController::class);
     });
 });
 

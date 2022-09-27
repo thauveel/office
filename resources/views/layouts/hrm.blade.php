@@ -161,6 +161,12 @@
                     @endif
                     <x-banner/>
                     
+                    @if (isset($filters))
+                    <div class="bg-white shadow">
+                        {{ $filters }}
+                    </div>
+                    @endif
+
                     {{ $slot }}
                     
                 </main>

@@ -23,7 +23,7 @@ class Shift extends BaseModel
     // protected $dateFormat = 'H:i';
 
     protected $fillable = [
-        'day_of_week', 'color', 'check_in_start','check_in_end',
+        'color', 'check_in_start','check_in_end',
         'break_start', 'break_end', 'break_allowed_duration',
         'check_out_start','check_out_end', 'shift_total', 
         'work_site_id', 'job_id', 'employee_id'

@@ -16,7 +16,7 @@ class WorkSite extends BaseModel
 
     public function head()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class,'employee_id','id');
     }
 
     public function departments()

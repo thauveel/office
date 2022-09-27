@@ -85,6 +85,8 @@
                             class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex justify-between justify-items-center">
                             <a href="{{route('hrm.employees.edit', compact('employee')) }}"
                                 class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href="{{route('hrm.employees.show', compact('employee')) }}"
+                                class="text-indigo-600 hover:text-indigo-900">View</a>
                             <form name="employee-{{$employee->id}}"
                                 action="{{route('hrm.employees.destroy',compact('employee'))}}" method="POST">
                                 @csrf

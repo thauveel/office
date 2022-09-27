@@ -4,7 +4,7 @@
         <div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
             <div class="flex-1 min-w-0">
                 <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                    New Shift
+                    New Duty
                 </h1>
             </div>
             <div class="mt-4 flex sm:mt-0 sm:ml-4">
@@ -22,7 +22,7 @@
     <!-- Projects table (small breakpoint and up) -->
     <div class="sm:block">
         <div class="align-middle inline-block min-w-full px-4 py-4 sm:px-6 lg:px-8">
-        @include('hrm.shifts._form',$shift)
+        @include('hrm.worksites.duties._form',$duty)
         </div>
     </div>
 </x-hrm-layout>

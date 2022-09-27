@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Hrm;
 
+use App\Models\hrm\Duty;
+use Carbon\CarbonPeriod;
 use App\Models\hrm\Shift;
 use App\Models\Hrm\WorkSite;
 use Illuminate\Http\Request;
@@ -11,6 +13,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use App\Http\Requests\Hrm\StoreShiftRequest;
 use App\Http\Requests\Hrm\UpdateShiftRequest;
+use App\Http\Requests\Hrm\AssignDutytoEmployeeRequest;
+use App\Models\hrm\Attendance;
 
 class ShiftController extends Controller
 {
@@ -51,6 +55,52 @@ class ShiftController extends Controller
     {
         $shift = new Shift();
         return view('hrm.worksites.shifts.create',compact('worksite','shift'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function assign(WorkSite $worksite, Shift $shift)
+    {
+        return view('hrm.worksites.shifts.assign',compact('worksite','shift'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\AssignDutytoEmployeeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function assignto(WorkSite $worksite,Shift $shift, AssignDutytoEmployeeRequest $request)
+    {
+        
+        $data = $request->validated();
+        $dateRange = CarbonPeriod::create($data['date_from'], $data['date_to']);
+        foreach($dateRange as $date) {
+           $duty = new Duty();
+           $duty->date = $date;
+           $duty->employee_id = $data['employee_id'];
+           $duty->shift_id = $shift->id;
+           $duty->color = $shift->color;
+           $duty->check_in_start = $shift->check_in_start;
+           $duty->check_in_end = $shift->check_in_end;
+           $duty->break_start = $shift->break_start;
+           $duty->break_end = $shift->break_end;
+           $duty->break_allowed_duration = $shift->break_allowed_duration;
+           $duty->check_out_start = $shift->check_out_start;
+           $duty->check_out_end = $shift->check_out_end;
+           $duty->must_complete_for_attendance = true;
+           $duty->save();
+
+           $attendance = new Attendance();
+           $attendance->employee_id = $data['employee_id'];
+           $attendance->duty_id = $duty->id;
+           $attendance->save();
+        }
+
+       return redirect()->route('hrm.worksites.shifts.index', compact('worksite'))->withSuccess('Duty created successfully.');
     }
 
     /**
@@ -102,7 +152,7 @@ class ShiftController extends Controller
         $data = $request->validated();
 
         $shift->update($data);
-        return redirect()->route('hrm.worksites.shifts.index', compact('worksite','shift'))->withSuccess('Shift updated successfully.');
+        return redirect()->route('hrm.worksites.shifts.index', compact('worksite'))->withSuccess('Shift updated successfully.');
     }
 
     /**

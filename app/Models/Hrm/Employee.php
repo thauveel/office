@@ -241,6 +241,8 @@ class Employee extends BaseModel
         return $this->hasMany(Shift::class);
     }
 
+    
+
     // public function department()
     // {
     //     return $this->
