@@ -38,6 +38,7 @@ return new class extends Migration
 
             $table->text('emegency_contact_name')->nullable();
             $table->text('emegency_contact')->nullable();
+            $table->text('emegency_contact_address')->nullable();
             $table->text('emegency_contact_relation')->nullable();
 
             $table->boolean('is_active')->nullable();
