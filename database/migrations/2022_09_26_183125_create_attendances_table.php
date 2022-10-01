@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->date('date')->nullable();
             $table->time('check_in_at')->nullable();
             $table->time('check_out_at')->nullable();
             $table->string('status')->default('scheduled');

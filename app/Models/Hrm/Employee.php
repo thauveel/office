@@ -5,6 +5,7 @@ namespace App\Models\Hrm;
 use App\Models\User;
 use App\Models\Hrm\Job;
 use App\Models\BaseModel;
+use App\Models\hrm\Attendance;
 use App\Models\hrm\Shift;
 
 class Employee extends BaseModel
@@ -17,7 +18,7 @@ class Employee extends BaseModel
         'probation_end_date', 'term_end_date', 'merital_status',
         'phone', 'email', 'permanent_address', 'permanent_address_dv',
         'current_address', 'current_address_dv', 'emegency_contact_name',
-        'emegency_contact', 'emegency_contact_relation', 'profile_photo_path',
+        'emegency_contact', 'emegency_contact_address', 'emegency_contact_relation', 'profile_photo_path',
         'is_active','job_id','basic_salary','biometric_device_id','user_id'
     ];
 
@@ -241,6 +242,16 @@ class Employee extends BaseModel
         return $this->hasMany(Shift::class);
     }
 
+    public function duties()
+    {
+        return $this->hasMany(Duty::class);
+    }
+
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
     
 
     // public function department()

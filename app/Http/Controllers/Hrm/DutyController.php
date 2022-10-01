@@ -35,7 +35,7 @@ class DutyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(WorkSite $worksite, Request $request)
+    public function index(Request $request)
     {
         $allowedfilters =[
             AllowedFilter::exact('date'),
@@ -45,15 +45,13 @@ class DutyController extends Controller
         $duties = QueryBuilder::for(Duty::with('employee'))
         ->allowedFilters($allowedfilters)
         ->join('shifts','shifts.id','shift_id')
-        ->where('work_site_id',$worksite->id)
-        ->defaultSort('-duties.date')
         ->select('duties.*')
         ->defaultSort('-date','employee_id')
         ->paginate(10)
         ->appends(request()->query());
         $request->flash();
         
-        return view('hrm.worksites.duties.index',compact('duties','worksite'));
+        return view('hrm.duties.index',compact('duties'));
     }
 
     /**
@@ -117,10 +115,10 @@ class DutyController extends Controller
      * @param  \App\Models\hrm\Duty  $duty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worksite $worksite, Duty $duty)
+    public function destroy(Duty $duty)
     {
         $duty->attendance()->delete();
         $duty->delete();
-        return redirect()->route('hrm.worksites.duties.index',$worksite)->withSuccess('Duty deleted successfully.');
+        return redirect()->route('hrm.duties.index')->withSuccess('Duty deleted successfully.');
     }
 }

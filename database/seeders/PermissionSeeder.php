@@ -60,6 +60,13 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'update duty']);
         // Permission::create(['name' => 'delete duty']);
 
+        // // create permissions for model attendance
+        // Permission::create(['name' => 'create attendance']);
+        // Permission::create(['name' => 'read attendance']);
+         // Permission::create(['name' => 'read all attendance']);
+        // Permission::create(['name' => 'update attendance']);
+        // Permission::create(['name' => 'delete attendance']);
+
         // create permissions for model house
         // Permission::create(['name' => 'create house']);
         // Permission::create(['name' => 'read house']);

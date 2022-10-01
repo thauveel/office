@@ -96,6 +96,7 @@ class ShiftController extends Controller
 
            $attendance = new Attendance();
            $attendance->employee_id = $data['employee_id'];
+           $attendance->date = $duty->date;
            $attendance->duty_id = $duty->id;
            $attendance->save();
         }

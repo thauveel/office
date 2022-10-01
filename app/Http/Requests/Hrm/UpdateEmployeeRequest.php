@@ -46,6 +46,7 @@ class UpdateEmployeeRequest extends FormRequest
             'current_address_dv' => 'nullable|string',
             'emegency_contact_name' => 'nullable|string',
             'emegency_contact' => 'nullable|numeric',
+            'emegency_contact_address' => 'nullable|string',
             'emegency_contact_relation' => 'nullable|string',
             'is_active' => 'required|boolean',
             'basic_salary' => 'nullable|numeric',

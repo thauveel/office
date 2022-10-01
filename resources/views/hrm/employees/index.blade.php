@@ -59,9 +59,9 @@
                                     <div class="text-gray-500">{{$employee->email}}</div>
                                     <dl class="font-normal lg:hidden">
                                         <dt class="sr-only">Title</dt>
-                                        <dd class="mt-1 truncate text-gray-700">{{$employee->job->name}}</dd>
+                                        <dd class="mt-1 truncate text-gray-700">{{$employee->job? $employee->job->name : '' }}</dd>
                                         <dt class="sr-only sm:hidden">Department</dt>
-                                        <dd class="mt-1 truncate text-gray-500">{{$employee->job->department->name}} in {{$employee->job->department->worksite->name}}</dd>
+                                        <dd class="mt-1 truncate text-gray-500">{{$employee->job? $employee->job->department->name : ''}} in {{$employee->job? $employee->job->department->worksite->name : ''}}</dd>
                                     </dl>
                                 </div>
 
@@ -70,8 +70,8 @@
                         </td>
 
                         <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                            <div class="text-gray-900">{{$employee->job->name}}</div>
-                            <div class="text-gray-500">{{$employee->job->department->name}} in {{$employee->job->department->worksite->name}}</div>
+                            <div class="text-gray-900">{{$employee->job? $employee->job->name: ''}}</div>
+                            <div class="text-gray-500">{{$employee->job?$employee->job->department->name:''}} in {{$employee->job?$employee->job->department->worksite->name:''}}</div>
                         </td>
                         <td class="px-3 py-4 text-sm text-gray-500">
                             @if($employee->is_active)

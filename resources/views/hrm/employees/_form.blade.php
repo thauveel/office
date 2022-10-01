@@ -168,6 +168,14 @@
         </div>
 
         <div>
+            <label class="uppercase text-xs text-gray-600 font-medium">Emergency Contact Address</label>
+            <div>
+                <textarea rows="3" type="text" name="emegency_contact_address"
+                    class="block w-full mt-1 border border-gray-200 border-gray-300 form-input rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">{{old('emegency_contact_address',$employee->emegency_contact_address)}}</textarea>
+            </div>
+        </div>
+
+        <div>
             <label class="uppercase text-xs text-gray-600 font-medium">Emergency Contact relation</label>
             <div>
                 <x-input type="text" name="emegency_contact_relation" class="block mt-1 w-full" value="{{old('emegency_contact_relation',$employee->emegency_contact_relation)}}" />

@@ -8,15 +8,7 @@
             </div>
             <div class="mt-4 flex sm:mt-0 sm:ml-4">
 
-                <a href="{{route('hrm.worksites.duties.create',$worksite)}}"
-                    class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:order-1 sm:ml-3">
-                    Add Duty
-                </a>
-
-                <a href="{{route('hrm.worksites.index')}}"
-                    class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:order-1 sm:ml-3">
-                    Back to Worksites
-                </a>
+                
             </div>
         </div>
     </x-slot>
@@ -34,7 +26,7 @@
                     </div>
                     <div class="mr-4">
                         @livewire('search-dropdown', [
-                        'name' => 'employee_id',
+                        'name' => 'filter[employee_id]',
                         'model' => 'App\Models\Hrm\Employee',
                         'placeholder' => 'Select Employee',
                         'headerfield' => 'staff_id',
@@ -54,7 +46,7 @@
                     </div>
 
                     <div class="flex ml-2">
-                        <a href="{{route('hrm.worksites.duties.index', $worksite)}}"
+                        <a href="{{route('hrm.duties.index')}}"
                             class="inline-flex justify-center items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150 block mt-1">
                             Clear
                         </a>
@@ -101,7 +93,7 @@
                         <td
                             class="flex justify-between relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                             <form name="duty-{{$duty->id}}"
-                                action="{{route('hrm.worksites.duties.destroy',compact('worksite','duty'))}}"
+                                action="{{route('hrm.duties.destroy',compact('duty'))}}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')

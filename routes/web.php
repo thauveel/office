@@ -49,7 +49,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             [ShiftController::class, 'assign'])->name('worksites.shifts.assign');
         Route::post('/worksites/{worksite}/shifts/{shift}/assignto', 
             [ShiftController::class, 'assignto'])->name('worksites.shifts.assignto');
-        Route::resource('worksites.duties', DutyController::class);
+        Route::resource('duties', DutyController::class);
         Route::resource('employees', EmployeeController::class);
         Route::resource('employees', EmployeeController::class);
         Route::resource('attendances', AttendanceController::class);

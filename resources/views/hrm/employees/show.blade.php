@@ -23,7 +23,7 @@
                                 <div
                                     class="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                                     <button type="button"
-                                        class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+                                        class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                                         <!-- Heroicon name: mini/envelope -->
                                         <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -35,7 +35,7 @@
                                         <span>Message</span>
                                     </button>
                                     <button type="button"
-                                        class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+                                        class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
                                         <!-- Heroicon name: mini/phone -->
                                         <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -68,6 +68,10 @@
                                 
                                 <a href="#"
                                 @click.prevent="tab = 3" :class="{'border-pink-500 text-gray-900 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm': tab === 3, 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm': tab !== 3}">Addresses</a>
+                            
+                                <a href="#"
+                                @click.prevent="tab = 4" :class="{'border-pink-500 text-gray-900 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm': tab === 4, 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm': tab !== 4}">Emegency Contact Detail</a>
+                                
                             </nav>
                         </div>
                     </div>
@@ -177,77 +181,35 @@
                         
                     </dl>
                 </div>
+
+                <!-- Description list -->
+                <div class="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8"
+                x-show="tab === 4" x-transition:enter.duration.500ms>
+                    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-500">Emegency Contact Person</dt>
+                            <dd class="mt-1 text-sm text-gray-900">{{$employee->emegency_contact_name}}</dd>
+                        </div>
+
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-500">Emegency Contact</dt>
+                            <dd class="mt-1 text-sm text-gray-900">{{$employee->emegency_contact}}</dd>
+                        </div>
+
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-500">Emegency Contact Address</dt>
+                            <dd class="mt-1 text-sm text-gray-900"><address>{!! nl2br( e($employee->emegency_contact_address)) !!}</address></dd>
+                        </div>
+
+                        <div class="sm:col-span-1">
+                            <dt class="text-sm font-medium text-gray-500">Emegency Contact Relation</dt>
+                            <dd class="mt-1 text-sm text-gray-900">{{$employee->emegency_contact_relation}}</dd>
+                        </div>
+                        
+                    </dl>
+                </div>
             
-                <!-- Team member list -->
-                <!-- <div class="mx-auto mt-8 max-w-5xl px-4 pb-12 sm:px-6 lg:px-8"
-                x-show="tab === 1" x-transition:enter.duration.500ms>
-                    <h2 class="text-sm font-medium text-gray-500">Team members</h2>
-                    <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <div
-                            class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-pink-500 focus-within:ring-offset-2 hover:border-gray-400">
-                            <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <a href="#" class="focus:outline-none">
-                                    <span class="absolute inset-0" aria-hidden="true"></span>
-                                    <p class="text-sm font-medium text-gray-900">Leslie Alexander</p>
-                                    <p class="truncate text-sm text-gray-500">Co-Founder / CEO</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div
-                            class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-pink-500 focus-within:ring-offset-2 hover:border-gray-400">
-                            <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <a href="#" class="focus:outline-none">
-                                    <span class="absolute inset-0" aria-hidden="true"></span>
-                                    <p class="text-sm font-medium text-gray-900">Michael Foster</p>
-                                    <p class="truncate text-sm text-gray-500">Co-Founder / CTO</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div
-                            class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-pink-500 focus-within:ring-offset-2 hover:border-gray-400">
-                            <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <a href="#" class="focus:outline-none">
-                                    <span class="absolute inset-0" aria-hidden="true"></span>
-                                    <p class="text-sm font-medium text-gray-900">Dries Vincent</p>
-                                    <p class="truncate text-sm text-gray-500">Manager, Business Relations</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div
-                            class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-pink-500 focus-within:ring-offset-2 hover:border-gray-400">
-                            <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full"
-                                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <a href="#" class="focus:outline-none">
-                                    <span class="absolute inset-0" aria-hidden="true"></span>
-                                    <p class="text-sm font-medium text-gray-900">Lindsay Walton</p>
-                                    <p class="truncate text-sm text-gray-500">Front-end Developer</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+   
                 </div>
             </article>
         </div>

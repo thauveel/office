@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\hrm\Attendance;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AttendancePolicy
@@ -18,7 +19,10 @@ class AttendancePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        
+        return $user->can('read attendance') 
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -30,7 +34,9 @@ class AttendancePolicy
      */
     public function view(User $user, Attendance $attendance)
     {
-        //
+        return $user->can('read attendance')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -41,7 +47,9 @@ class AttendancePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create attendance')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -53,7 +61,9 @@ class AttendancePolicy
      */
     public function update(User $user, Attendance $attendance)
     {
-        //
+        return $user->can('update attendance')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -65,7 +75,9 @@ class AttendancePolicy
      */
     public function delete(User $user, Attendance $attendance)
     {
-        //
+        return $user->can('delete attendance')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -77,7 +89,9 @@ class AttendancePolicy
      */
     public function restore(User $user, Attendance $attendance)
     {
-        //
+        return $user->can('update attendance')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 
     /**
@@ -89,6 +103,8 @@ class AttendancePolicy
      */
     public function forceDelete(User $user, Attendance $attendance)
     {
-        //
+        return $user->can('delete attendance')
+        ? Response::allow()
+        : Response::deny('You do not have permission.');
     }
 }
