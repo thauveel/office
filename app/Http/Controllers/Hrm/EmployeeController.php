@@ -39,10 +39,10 @@ class EmployeeController extends Controller
             AllowedFilter::custom('query', new FilterMultiFields($fields))
         ];
 
-        $employees = QueryBuilder::for(Employee::with('job'))//need to return only user name and email
+        $employees = QueryBuilder::for(Employee::with('job.department.worksite'))//need to return only user name and email
         // ->join('jobs','employees.job_id','jobs.uuid')
         // ->join('departments','jobs.department_id','departments.uuid')
-        ->defaultSort('-employees.created_at')
+        ->defaultSort('employees.name')
         ->allowedFilters($allowedfilters)
         // ->select('employees.*')
         ->paginate(10)
@@ -74,7 +74,7 @@ class EmployeeController extends Controller
     {
         $data = $request->validated();
 
-        $department = Employee::create($data);
+        $employee = Employee::create($data);
         return redirect()->route('hrm.employees.index')->withSuccess('Employee created successfully.');
     }
 

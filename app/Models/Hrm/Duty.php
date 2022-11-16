@@ -3,8 +3,6 @@
 namespace App\Models\hrm;
 
 use App\Models\BaseModel;
-use App\Models\Hrm\Employee;
-use App\Models\Hrm\WorkSite;
 
 class Duty extends BaseModel
 {
@@ -26,19 +24,6 @@ class Duty extends BaseModel
         'check_out_end' => 'datetime:H:i',
     ];
 
-
-
-    public function worksite()
-    {
-        return $this->hasOneThrough(
-            WorkSite::class,
-            Shift::class,
-            'work_site_id', // Foreign key on the environments table...
-            'shift_id', // Foreign key on the deployments table...
-            'id', // Local key on the projects table...
-            'id' // Local key on the environments table...
-        );
-    }
 
     public function shift()
     {

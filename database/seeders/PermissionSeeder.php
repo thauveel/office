@@ -67,6 +67,19 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'update attendance']);
         // Permission::create(['name' => 'delete attendance']);
 
+        // // create permissions for model attendancelog
+        // Permission::create(['name' => 'create attendancelog']);
+        // Permission::create(['name' => 'read attendancelog']);
+         // Permission::create(['name' => 'read all attendancelog']);
+        // Permission::create(['name' => 'update attendancelog']);
+        // Permission::create(['name' => 'delete attendancelog']);
+
+        // // create permissions for model biometricdevice
+        // Permission::create(['name' => 'create biometricdevice']);
+        // Permission::create(['name' => 'read biometricdevice']);
+        // Permission::create(['name' => 'update biometricdevice']);
+        // Permission::create(['name' => 'delete biometricdevice']);
+
         // create permissions for model house
         // Permission::create(['name' => 'create house']);
         // Permission::create(['name' => 'read house']);
@@ -87,8 +100,8 @@ class PermissionSeeder extends Seeder
         //                                 // 'create resident', 'read resident', 'update resident', 'delete resident');
 
         // // create demo users
-        $user = User::find(1);
-        $user->assignRole('Super-Admin');
+        // $user = User::find(1);
+        // $user->assignRole('Super-Admin');
         //$user->assignRole('admin');
         
     }

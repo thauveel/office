@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Hrm;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateJobRequest extends FormRequest
+class UpdateAttendanceLogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class UpdateJobRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('update job');
+        return false;
     }
 
     /**
@@ -25,9 +24,7 @@ class UpdateJobRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'code' => 'required|string',
-            'department_id' => 'required|exists:departments,id'
+            //
         ];
     }
 }

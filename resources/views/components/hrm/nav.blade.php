@@ -112,6 +112,20 @@
                 </x-hrm.nav-link>
                 @endcan
 
+                @can('read biometricdevice')
+                <x-hrm.nav-link :href="route('hrm.biometricdevices.index')" :active="request()->routeIs('hrm.biometricdevices.*')">
+                    <svg class="mr-4 flex-shrink-0 h-6 w-6" x-description="Heroicon name: outline/home"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        aria-hidden="true">
+                        <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+                        <path d="M12 10a4 4 0 1 0 0 8 4 4 0 1 0 0-8z"></path>
+                        <path d="M12 6h.01"></path>
+                    </svg>
+                    Biometric Devices
+                </x-hrm.nav-link>
+                @endcan
+
                 
 
             </div>

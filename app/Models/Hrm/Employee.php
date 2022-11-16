@@ -2,11 +2,7 @@
 
 namespace App\Models\Hrm;
 
-use App\Models\User;
-use App\Models\Hrm\Job;
 use App\Models\BaseModel;
-use App\Models\hrm\Attendance;
-use App\Models\hrm\Shift;
 
 class Employee extends BaseModel
 {

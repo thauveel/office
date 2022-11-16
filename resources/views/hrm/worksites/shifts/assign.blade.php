@@ -47,15 +47,15 @@
                     <div>
                         <label class="uppercase text-xs text-gray-600 font-medium">Employee</label>
 
-                        @livewire('search-dropdown', [
-                        'name' => 'employee_id',
-                        'model' => 'App\Models\Hrm\Employee',
-                        'placeholder' => 'Select Employee',
-                        'headerfield' => 'staff_id',
-                        'selectfield' => 'id',
-                        'displayfields' => [['name','name_dv'],['permanent_address','permanent_address_dv']],
-                        'searchfields' => ['staff_id','name','name_dv','permanent_address','permanent_address_dv'],
-                        'value' => old('employee_id')])
+                        <select name="employees[]"
+                            class="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
+                            multiple = "multiple">
+                            @foreach($employees as $employee)
+                            <option value="{{$employee->id}}"> 
+                            {{$employee->name}}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>

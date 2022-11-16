@@ -15,6 +15,7 @@ use App\Http\Requests\Hrm\StoreShiftRequest;
 use App\Http\Requests\Hrm\UpdateShiftRequest;
 use App\Http\Requests\Hrm\AssignDutytoEmployeeRequest;
 use App\Models\hrm\Attendance;
+use Illuminate\Support\Arr;
 
 class ShiftController extends Controller
 {
@@ -64,7 +65,18 @@ class ShiftController extends Controller
      */
     public function assign(WorkSite $worksite, Shift $shift)
     {
-        return view('hrm.worksites.shifts.assign',compact('worksite','shift'));
+        $departments = $worksite->departments;
+        $employees = [];
+        foreach ($departments as $department){
+            foreach ($department->jobs as $job){
+                foreach( $job->employees as $employee){
+                    array_push($employees,$employee);
+                }
+             
+            }
+        }
+
+        return view('hrm.worksites.shifts.assign',compact('worksite','shift','employees'));
     }
 
     /**
@@ -78,28 +90,31 @@ class ShiftController extends Controller
         
         $data = $request->validated();
         $dateRange = CarbonPeriod::create($data['date_from'], $data['date_to']);
-        foreach($dateRange as $date) {
-           $duty = new Duty();
-           $duty->date = $date;
-           $duty->employee_id = $data['employee_id'];
-           $duty->shift_id = $shift->id;
-           $duty->color = $shift->color;
-           $duty->check_in_start = $shift->check_in_start;
-           $duty->check_in_end = $shift->check_in_end;
-           $duty->break_start = $shift->break_start;
-           $duty->break_end = $shift->break_end;
-           $duty->break_allowed_duration = $shift->break_allowed_duration;
-           $duty->check_out_start = $shift->check_out_start;
-           $duty->check_out_end = $shift->check_out_end;
-           $duty->must_complete_for_attendance = true;
-           $duty->save();
-
-           $attendance = new Attendance();
-           $attendance->employee_id = $data['employee_id'];
-           $attendance->date = $duty->date;
-           $attendance->duty_id = $duty->id;
-           $attendance->save();
+        foreach($data['employees'] as $employee)
+        {
+            foreach($dateRange as $date) {
+                $duty = new Duty();
+                $duty->date = $date;
+                $duty->employee_id = $employee;
+                $duty->shift_id = $shift->id;
+                $duty->color = $shift->color;
+                $duty->check_in_start = $shift->check_in_start;
+                $duty->check_in_end = $shift->check_in_end;
+                $duty->break_start = $shift->break_start;
+                $duty->break_end = $shift->break_end;
+                $duty->break_allowed_duration = $shift->break_allowed_duration;
+                $duty->check_out_start = $shift->check_out_start;
+                $duty->check_out_end = $shift->check_out_end;
+                $duty->must_complete_for_attendance = true;
+                $duty->save();
+     
+                $attendance = new Attendance();
+                $attendance->employee_id = $employee;
+                $attendance->duty_id = $duty->id;
+                $attendance->save();
+             }
         }
+        
 
        return redirect()->route('hrm.worksites.shifts.index', compact('worksite'))->withSuccess('Duty created successfully.');
     }

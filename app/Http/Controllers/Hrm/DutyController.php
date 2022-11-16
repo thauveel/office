@@ -50,7 +50,7 @@ class DutyController extends Controller
         ->paginate(10)
         ->appends(request()->query());
         $request->flash();
-        
+    
         return view('hrm.duties.index',compact('duties'));
     }
 
@@ -83,7 +83,7 @@ class DutyController extends Controller
      */
     public function show(Duty $duty)
     {
-        //
+       
     }
 
     /**

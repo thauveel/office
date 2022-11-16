@@ -21,17 +21,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(1)->create();
+        // User::factory()->count(1)->create();
 
         $superadmin = Role::create(['name' => 'Super-Admin']);
         
         $user = User::find(1);
         $user->assignRole('Super-Admin');
 
-        WorkSite::factory()->count(1)->create();
-        Department::factory()->count(2)->create();
-        Job::factory()->count(4)->create();
-        Employee::factory()->count(10)->create();
+        // WorkSite::factory()->count(1)->create();
+        // Department::factory()->count(2)->create();
+        // Job::factory()->count(4)->create();
+        // Employee::factory()->count(10)->create();
 
     }
 }

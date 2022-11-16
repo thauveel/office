@@ -3,9 +3,6 @@
 namespace App\Models\Hrm;
 
 use App\Models\BaseModel;
-use App\Models\Hrm\Employee;
-use App\Models\Hrm\Department;
-use App\Models\hrm\Shift;
 
 class WorkSite extends BaseModel
 {

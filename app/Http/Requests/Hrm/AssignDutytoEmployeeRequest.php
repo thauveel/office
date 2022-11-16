@@ -27,7 +27,7 @@ class AssignDutytoEmployeeRequest extends FormRequest
         return [
             'date_from' => 'required|date',
             'date_to' => 'required|date',
-            'employee_id' => 'required|string|exists:employees,id'
+            'employees' => 'required|array|min:1'
         ];
     }
 }

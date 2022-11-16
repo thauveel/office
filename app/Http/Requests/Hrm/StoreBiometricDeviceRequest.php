@@ -5,7 +5,7 @@ namespace App\Http\Requests\Hrm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateJobRequest extends FormRequest
+class StoreBiometricDeviceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class UpdateJobRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('update job');
+        return Auth::user()->can('create biometricdevice');
     }
 
     /**
@@ -26,8 +26,11 @@ class UpdateJobRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'code' => 'required|string',
-            'department_id' => 'required|exists:departments,id'
+            'ip' => 'required|ipv4',            
+            'work_site_id' => 'required|string|exists:work_sites,id',
+            'serial' => 'nullable|string|unique:biometric_devices'
         ];
     }
+
+    
 }

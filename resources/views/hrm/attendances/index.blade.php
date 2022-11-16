@@ -51,7 +51,7 @@
                     <div class="flex ml-2">
                         <button type="submit"
                             class="inline-flex justify-center items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150 block mt-1">
-                            Filter
+                            Filter 
                         </button>
                     </div>
 
@@ -98,15 +98,14 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
                 @foreach ($attendances as $attendance)
+                
                     <tr>
                         <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-900 sm:pl-6">{{$attendance->employee->name}}</td>
                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$attendance->duty->date->format('d-m-Y')}}</td>
                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$attendance->duty->check_in_end->format('H:i')}}-{{$attendance->duty->check_out_start->format('H:i')}}</td>
                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{$attendance->status}}</td>
                         <td class="flex justify-between relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                            <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                            <a href="" class="text-indigo-600 hover:text-indigo-900">Assign</a>
-                            
+                            <a href="" class="text-indigo-600 hover:text-indigo-900">Attendance Logs</a> 
                         </td>
                     </tr>
                     @endforeach

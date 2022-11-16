@@ -58,7 +58,7 @@ class AttendanceController extends Controller
             ->join('duties','duties.id','attendances.duty_id')
             ->defaultSort('-duties.date')
             ->allowedFilters($allowedfilters)
-            ->whereBetween('attendance.date', [$start_date,$end_date])
+            ->whereBetween('duties.date', [$start_date,$end_date])
             ->paginate(10)
             ->appends(request()->query());
         }elseif(Auth::user()->can('read all attendance')){
@@ -75,8 +75,8 @@ class AttendanceController extends Controller
         }
         
         $request->flash();
-          //dd($attendances);
-        return view('hrm.attendances.index', compact('attendances'));
+        
+        return view('hrm.attendances.index', compact('attendances','request'));
     }
 
     /**
@@ -108,7 +108,7 @@ class AttendanceController extends Controller
      */
     public function show(Attendance $attendance)
     {
-        //
+       
     }
 
     /**

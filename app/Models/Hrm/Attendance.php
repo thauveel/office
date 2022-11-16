@@ -28,4 +28,9 @@ class Attendance extends BaseModel
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function attendancelogs()
+    {
+        return $this->hasMany(AttendanceLog::class);
+    }
 }

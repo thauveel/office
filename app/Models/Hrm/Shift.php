@@ -5,8 +5,6 @@ namespace App\Models\hrm;
 use Carbon\Carbon;
 use App\Models\Hrm\Job;
 use App\Models\BaseModel;
-use App\Models\Hrm\WorkSite;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Shift extends BaseModel
 {

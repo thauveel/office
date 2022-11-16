@@ -3,8 +3,6 @@
 namespace App\Models\Hrm;
 
 use App\Models\BaseModel;
-use App\Models\hrm\Shift;
-use App\Models\Hrm\Department;
 
 class Job extends BaseModel
 {
@@ -20,6 +18,11 @@ class Job extends BaseModel
     public function shifts()
     {
         return $this->hasMany(Shift::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
     }
 
     // public function worksite() 

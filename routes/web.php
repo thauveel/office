@@ -15,7 +15,10 @@ use App\Http\Controllers\Hrm\EmployeeController;
 use App\Http\Controllers\Hrm\WorkSiteController;
 use App\Http\Controllers\Hrm\AttendanceController;
 use App\Http\Controllers\Hrm\DepartmentController;
+use App\Http\Controllers\Hrm\AttendanceLogController;
+use App\Http\Controllers\Hrm\BiometricDeviceController;
 use App\Http\Controllers\Hrm\WorkSiteShiftController;
+use App\Models\hrm\BiometricDevice;
 
 Route::group(['middleware' => 'auth'], function() {
 
@@ -53,6 +56,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::resource('employees', EmployeeController::class);
         Route::resource('employees', EmployeeController::class);
         Route::resource('attendances', AttendanceController::class);
+        Route::resource('attendancelogs', AttendanceLogController::class);
+        Route::resource('biometricdevices', BiometricDeviceController::class);
+        Route::get('/biometricdevices/{biometricdevice}/download', 
+            [BiometricDeviceController::class, 'download'])->name('biometricdevices.download');
     });
 });
 
